@@ -136,6 +136,29 @@ def test_dental_ind_self_Spouse_child(playwright: Playwright,User_Credentials, b
     ReviewPage.issuePolicy()
     ReviewPage.getPolicyNo()
 
+@pytest.mark.parametrize('User_Credentials', User_Credentials)
+def test_dental_ind_self_change_to_Gold(playwright: Playwright,User_Credentials, browser_Instance):
+    User_Email = User_Credentials["userEmail"]
+    user_Password= User_Credentials["userPassword"]
+    ph_Bp = User_Credentials["phBp"]
+    ph_Name = User_Credentials["phName"]
+    mobile_No= User_Credentials["mobileNo"]
+    email_Id= User_Credentials["emailId"]
+    insured_number = [0, 1, 2, 3]
+    login_page = Login(browser_Instance)
+    login_page.navigate_to_login_page()
+    login_page.user_login(User_Email,user_Password )
+    CreateNewQuote = login_page.qms_login()
+    CoveragesPage= CreateNewQuote.create_dental_quote()
+    CoveragesPage.addph(ph_Bp, ph_Name)
+    CoveragesPage.changeToGold(insured_number [0])
+    InsuredPersonsPage = CoveragesPage.clickOnProceedQuote()
+    InsuredPersonsPage.enterInsuredInfoDetails(mobile_No, email_Id)
+    ReviewPage= InsuredPersonsPage.clickOnGenearteQuote()
+    ReviewPage.downloadQuote()
+    ReviewPage.issuePolicy()
+    ReviewPage.getPolicyNo()
+
 
 
 
