@@ -5,7 +5,7 @@ from playwright.sync_api import Playwright
 
 from PageObjects.Login import Login
 
-with open("../Data/Credentials.json") as file:
+with open("Data/Credentials.json") as file:
     credentials = json.load(file)
     User_Credentials = credentials["User_Credentials"]
 
