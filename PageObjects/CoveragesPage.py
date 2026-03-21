@@ -34,7 +34,7 @@ class CoveragesPage:
         self.page.locator('span', has_text= 'more_vert' ).nth(insured_number).click()
         self.page.get_by_text('Edit', exact= True).click()
         self.page.get_by_text("PlatinumPlan *").click()
-        self.page.locator("span").filter(has_text= 'Gold' ).click()
+        self.page.locator('span.mat-option-text').nth(0).click()
         self.page.get_by_role("button", name="Update").click()
     def addChild(self, child_Bp, child_Name):
         self.page.get_by_text("Add Insured Person").click()
@@ -63,6 +63,21 @@ class CoveragesPage:
 
         self.page.get_by_role('combobox', name='Relationship with Proposer').click()
         self.page.get_by_text("Spouse").click()
+        self.page.get_by_text("Save", exact=True).click()
+    def addChild_Gold(self, child_Bp, child_Name):
+        self.page.get_by_text("Add Insured Person").click()
+        self.page.get_by_text('close', exact= True).click()
+        self.page.get_by_text("Add Insured Person").click()
+        self.page.locator(
+            "body > div:nth-child(11) > div:nth-child(2) > div:nth-child(1) > mat-dialog-container:nth-child(2) > app-additional-insured-popup:nth-child(1) > mat-dialog-content:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > dx-input:nth-child(1) > div:nth-child(1) > mat-form-field:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(4) > input:nth-child(1)").fill(
+            child_Name)
+        self.page.locator(
+            "body > div:nth-child(11) > div:nth-child(2) > div:nth-child(1) > mat-dialog-container:nth-child(2) > app-additional-insured-popup:nth-child(1) > mat-dialog-content:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > dx-input:nth-child(1) > div:nth-child(1) > mat-form-field:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(4) > input:nth-child(1)").fill(
+            child_Bp)
+        self.page.get_by_role('combobox', name='Relationship with Proposer').click()
+        self.page.get_by_text("Child").click()
+        self.page.get_by_text("PlatinumPlan *").click()
+        self.page.locator('span.mat-option-text').nth(0).click()
         self.page.get_by_text("Save", exact=True).click()
 
     def clickOnProceedQuote(self):
