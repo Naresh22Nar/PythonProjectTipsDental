@@ -85,3 +85,9 @@ class CoveragesPage:
         self.page.get_by_role("button", name='Proceed Quote').click()
         Insured_Persons_Page = InsuredPersonsPage(self.page)
         return Insured_Persons_Page
+    def clickOnSaveQuote(self):
+        self.page.get_by_text('Save Quote').click()
+        self.page.locator(".mat-checkbox-layout").nth(1).click()
+        self.page.get_by_role("button", name='Proceed Quote').click()
+        Insured_Persons_Page = InsuredPersonsPage(self.page)
+        return Insured_Persons_Page

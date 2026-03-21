@@ -266,6 +266,29 @@ def test_dental_Org_Employee_Employees_Spouse_Change_To_Gold(playwright: Playwri
     ReviewPage.issuePolicy()
     ReviewPage.getPolicyNo()
 
+@pytest.mark.parametrize('User_Credentials', User_Credentials)
+def test_dental_Org_Employee_SaveQuote(playwright: Playwright,User_Credentials, browser_Instance):
+    User_Email = User_Credentials["userEmail"]
+    user_Password= User_Credentials["userPassword"]
+    org_Ph_Name= User_Credentials["orgPhName"]
+    org_Ph_Bp=User_Credentials["orgPhBp"]
+    employee_Bp = User_Credentials["phBp"]
+    employee_Name = User_Credentials["phName"]
+    mobile_No= User_Credentials["mobileNo"]
+    email_Id= User_Credentials["emailId"]
+    login_page = Login(browser_Instance)
+    login_page.navigate_to_login_page()
+    login_page.user_login(User_Email,user_Password )
+    CreateNewQuote = login_page.qms_login()
+    CoveragesPage= CreateNewQuote.create_dental_quote()
+    CoveragesPage.addOrgPh(org_Ph_Bp, org_Ph_Name)
+    CoveragesPage.addEmployee(employee_Bp, employee_Name)
+    InsuredPersonsPage = CoveragesPage.clickOnSaveQuote()
+    InsuredPersonsPage.enterInsuredInfoDetails(mobile_No, email_Id)
+    ReviewPage= InsuredPersonsPage.clickOnGenearteQuote()
+    ReviewPage.downloadQuote()
+    ReviewPage.issuePolicy()
+    ReviewPage.getPolicyNo()
 
 
 
